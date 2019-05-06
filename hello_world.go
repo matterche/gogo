@@ -7,14 +7,14 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func RequestHandler(w http.ResponseWriter, r *http.Request) {
+func requestHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Hello World!\n"))
 }
 
 func main() {
 	router := mux.NewRouter()
 	// Routes consist of a path and a handler function.
-	router.HandleFunc("/", RequestHandler)
+	router.HandleFunc("/", requestHandler)
 
 	// Bind to a port and pass our router in
 	log.Fatal(http.ListenAndServe(":8001", router))
