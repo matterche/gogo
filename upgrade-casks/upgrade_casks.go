@@ -1,4 +1,4 @@
-// stupid bulk upgarde of all installed brew cask packages
+// stupid bulk upgrade of all installed brew cask packages
 package main
 
 import (
@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	out, err := exec.Command("brew", "cask", "list").Output()
+	out, err := exec.Command("brew", "list", "--cask").Output()
 
 	if err != nil {
 		log.Fatal(err)
@@ -19,7 +19,7 @@ func main() {
 
 	for _, cask := range casks {
 		log.Printf("\n Upgrading cask %v", cask)
-		cmd := exec.Command("brew", "cask", "upgrade", cask)
+		cmd := exec.Command("brew", "upgrade", "--cask", cask)
 
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
@@ -29,7 +29,7 @@ func main() {
 		if err != nil {
 			log.Print(err)
 		} else {
-			log.Printf("\n Succesfully upgraded cask %v", cask)
+			log.Printf("\n Successfully upgraded cask %v", cask)
 		}
 
 	}
